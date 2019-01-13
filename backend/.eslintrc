@@ -70,6 +70,7 @@
     "localStorage": true,
     "jQuery": true,
     "location": true,
-    "Invoca": true
+    "Invoca": true,
+    "Confirm": true
   }
 }

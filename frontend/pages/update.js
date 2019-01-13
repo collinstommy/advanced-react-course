@@ -1,5 +1,5 @@
-import UpdateItem from '../components/CreateItem';
 import PropTypes from 'prop-types';
+import UpdateItem from '../components/CreateItem';
 
 const Sell = ({ query }) => (
   <div>
@@ -8,7 +8,7 @@ const Sell = ({ query }) => (
 );
 
 Sell.propTypes = {
-  query: PropTypes.objec
-}
+  query: PropTypes.object
+};
 
 export default Sell;

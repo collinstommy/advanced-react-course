@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import Items from '../components/Items';
 
-const Home = () => (
+const Home = ({ query }) => (
   <div>
     <p>hey</p>
-    <Items />
+    <Items page={parseFloat(query.page) || 1} />
   </div>
 );
 

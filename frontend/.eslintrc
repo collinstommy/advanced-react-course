@@ -38,6 +38,9 @@
       }
     ],
     "react/forbid-prop-types": 0,
+    "react/prop-types": 0,
+    "react/jsx-first-prop-new-line": 0,
+    "react/jsx-closing-bracket-location": 0,
     "no-unused-expressions": [
       1,
       {
@@ -71,6 +74,7 @@
     "localStorage": true,
     "jQuery": true,
     "location": true,
-    "Invoca": true
+    "Invoca": true,
+    "Confirm": true
   }
 }
