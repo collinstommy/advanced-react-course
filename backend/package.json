@@ -9,10 +9,15 @@
     "deploy": "prisma deploy --env-file variables.env"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-find-rules": "^1.14.0",
+    "eslint-plugin-import": "^1.16.0",
     "bcryptjs": "2.4.3",
     "cookie-parser": "^1.4.3",
     "dotenv": "6.0.0",
+    "eslint": "^5.12.1",
     "graphql": "^0.13.2",
     "graphql-cli": "^2.16.7",
     "graphql-yoga": "1.16.2",

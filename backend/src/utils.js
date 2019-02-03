@@ -14,4 +14,10 @@ function hasPermission(user, permissionsNeeded) {
   }
 }
 
-exports.hasPermission = hasPermission;
+function checkIfLoggedIn (context) {
+  if(!context.request.userId) {
+    throw new Error('You must be logged in.')
+  }
+}
+
+module.exports = { hasPermission, checkIfLoggedIn };
