@@ -3,6 +3,8 @@ import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 import User from './User';
 import Signout from './Signout';
+import { Mutation } from 'react-apollo';
+import { TOGGLE_CART_MUTATION } from './Cart';
 
 const userNavItems = (
   <Fragment>
@@ -16,6 +18,12 @@ const userNavItems = (
       <a>Account</a>
     </Link>
     <Signout />
+    <Mutation mutation={TOGGLE_CART_MUTATION}>
+      {toggleCart =>
+        (<button onClick={toggleCart}>
+          My Cart
+        </button>)}
+    </Mutation>
   </Fragment>
 );
 
@@ -27,14 +35,13 @@ const guestNavItems = (
 
 const Nav = () => (
   <User>
-    {({ data: { me } }) => {
-      return (<NavStyles>
+    {({ data: { me } }) =>
+      (<NavStyles>
         <Link href="/items">
           <a>Shop</a>
         </Link>
         {me ? userNavItems : guestNavItems}
-      </NavStyles>);
-    }
+      </NavStyles>)
     }
   </User>
 

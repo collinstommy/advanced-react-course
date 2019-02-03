@@ -16,6 +16,9 @@ const Query = {
   async users(parent, args, ctx, info) {
     // check if user is allowed to query all users
     checkIfLoggedIn(ctx);
+    console.log({
+      userOnRequest: ctx.request.user
+    });
     hasPermission(ctx.request.user, ['ADMIN', 'PERMISSIONUPDATE']);
 
   // empty where object {}

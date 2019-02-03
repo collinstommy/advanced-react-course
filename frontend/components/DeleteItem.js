@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -28,18 +29,21 @@ export class DeleteItem extends Component {
         variables={{ id: this.props.id }}
         update={this.update}
       >
-        {
-          (deleteItem, { error }) => (
-            <button
-              onClick={() => {
-                if (confirm('Are you sure you want to delete this?')) {
-                  deleteItem();
-                }
-              }}
-            >
-              {this.props.children}
-            </button>
-          )
+        {(deleteItem, { error }) => (
+          <button type="button"
+            onClick={() => {
+              // eslint-disable-next-line no-alert
+              if (confirm('Are you sure you want to delete this?')) {
+                deleteItem().catch(err => {
+                  // eslint-disable-next-line no-alert
+                  alert(err.message);
+                });
+              }
+            }}
+          >
+            {this.props.children}
+          </button>
+        )
         }
 
       </Mutation>
