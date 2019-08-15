@@ -21,9 +21,35 @@ const Query = {
     });
     hasPermission(ctx.request.user, ['ADMIN', 'PERMISSIONUPDATE']);
 
-  // empty where object {}
+    // empty where object {}
     // info => query fields from front end query 
     return ctx.db.query.users({}, info)
+  },
+  async order(parent, args, ctx, info) {
+    // make sure they are loggedif
+    checkIfLoggedIn(ctx);
+
+    const order = await ctx.db.query.order({
+      where: { id: args.id },
+    }, info);
+
+    const ownsOrder = order.user.id === ctx.request.userId;
+    const hasPermissionToSeeOrder = ctx.request.user.permissions.includes('ADMIN');
+    if (!ownsOrder || !hasPermissionToSeeOrder) {
+      throw new Error('Not allowed');
+    }
+    return order;
+  },
+  async orders(parent, args, ctx, info) {
+    checkIfLoggedIn(ctx);
+
+    const { userId } = ctx.request;
+    
+    return ctx.db.query.orders({
+      where: { 
+        user: { id: userId },
+      }
+    }, info);
   }
 };
 
