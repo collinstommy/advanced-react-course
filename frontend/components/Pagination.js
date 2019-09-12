@@ -6,7 +6,7 @@ import React from 'react';
 import PaginationStyles from './styles/PaginationStyles';
 import { perPage } from '../config';
 
-const PAGINATION_QUERY = gql`
+export const PAGINATION_QUERY = gql`
   query PAGINATION_QUERY {
     itemsConnection {
       aggregate {
@@ -18,14 +18,13 @@ const PAGINATION_QUERY = gql`
 
 const Pagination = ({ page }) =>
   (
-
     <Query query={PAGINATION_QUERY}>
       {({ data, loading, error }) => {
-        const { count } = data.itemsConnection.aggregate;
-        const pages = Math.ceil(count / perPage);
         if (loading) return <p>Loading</p>;
         if (error) return <p>{error}</p>;
-        return (<PaginationStyles>
+        const { count } = data.itemsConnection.aggregate;
+        const pages = Math.ceil(count / perPage);
+        return (<PaginationStyles data-test="pagination">
           <Head>
             <title>
               Sick Fits! - Page {page} of {pages}
@@ -42,7 +41,7 @@ const Pagination = ({ page }) =>
             </a>
           </Link>
           <p>
-            Page {page} of {pages}
+            Page {page} of <span className="total-pages">{pages}</span>
           </p>
           <p>{count} Items Total</p>
           <Link
@@ -51,7 +50,7 @@ const Pagination = ({ page }) =>
               pathname: 'items',
               query: { page: page + 1 }
             }}>
-            <a className="prev" aria-disabled={page >= pages}>
+            <a className="next" aria-disabled={page >= pages}>
               Next &rarr;
             </a>
           </Link>

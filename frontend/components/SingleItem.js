@@ -46,7 +46,7 @@ class SingleItem extends Component {
         variables={{ id }}
       >
         {({ error, loading, data }) => {
-          if (error) return <Error>Error!</Error>;
+          if (error) return <Error error={error}>Error!</Error>;
           if (loading) return <p>Loading </p>;
           if (!data.item) return <p>No item found</p>;
           const { largeImage, title, description } = data.item;
@@ -67,3 +67,4 @@ class SingleItem extends Component {
 }
 
 export default SingleItem;
+export { SINGLE_ITEM_QUERY };

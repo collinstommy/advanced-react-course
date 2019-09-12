@@ -75,6 +75,9 @@
     "jQuery": true,
     "location": true,
     "Invoca": true,
-    "Confirm": true
+    "Confirm": true,
+    "describe": true,
+    "it": true,
+    "expect": true,
   }
 }
