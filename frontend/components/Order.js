@@ -7,7 +7,7 @@ import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 import OrderStyles from './styles/OrderStyles';
 
-const SINGLE_ORDER_QUERY = gql`
+export const SINGLE_ORDER_QUERY = gql`
   query SINGLE_ORDER_QUER($id: ID!) {
     order(id: $id) {
       id
@@ -37,7 +37,7 @@ const Order = ({ id }) => (
       if (loading) return <p>loading</p>;
       const { order } = data;
       return (
-        <OrderStyles>
+        <OrderStyles data-test="order">
           <Head>
             <title>Order Id: {order.id}</title>
           </Head>

@@ -7,7 +7,7 @@ import Form from './styles/Form';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
-const CREATE_ITEM_MUTATION = gql`
+export const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
     $title: String!
     $description: String!
@@ -29,8 +29,8 @@ const CREATE_ITEM_MUTATION = gql`
 
 class CreateItem extends Component {
   state = {
-    title: 'Cool Shoes',
-    description: 'These are great',
+    title: '',
+    description: '',
     image: '',
     largeImage: '',
     price: 2000
@@ -72,6 +72,7 @@ class CreateItem extends Component {
       >
         {(createItem, { loading, error }) => (
           <Form
+            data-test="form"
             onSubmit={async (e) => {
               e.preventDefault();
               const res = await createItem();
@@ -101,6 +102,7 @@ class CreateItem extends Component {
                 <input
                   type="text"
                   name="title"
+                  id="title"
                   placeholder="Title"
                   value={this.state.title}
                   onChange={this.handleChange}
@@ -112,6 +114,7 @@ class CreateItem extends Component {
                 <input
                   type="text"
                   name="price"
+                  id="price"
                   placeholder="Price"
                   value={this.state.price}
                   onChange={this.handleChange}
@@ -122,6 +125,7 @@ class CreateItem extends Component {
                 Description
                 <textarea
                   type="text"
+                  id="description"
                   name="description"
                   placeholder="Enter a Description"
                   value={this.state.description}
@@ -139,4 +143,3 @@ class CreateItem extends Component {
 }
 
 export default CreateItem;
-export { CREATE_ITEM_MUTATION };

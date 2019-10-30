@@ -43,8 +43,9 @@ class TakeMyMoney extends Component {
   render() {
     return (
       <User>
-        {({ data: { me } }) => {
-          const image = me.cart.length && me.cart[0].item && me.cart[0].item.image;
+        {({ data: { me }, loading }) => {
+          if (loading || !me) return null;
+          const image = me && me.cart.length && me.cart[0].item && me.cart[0].item.image;
           return (<Mutation
             mutation={CREATE_ORDER_MUTATION}
             refetchQueries={[{ query: CURRENT_USER_QUERY }]}>{(createOrder) => (<StripeCheckout
